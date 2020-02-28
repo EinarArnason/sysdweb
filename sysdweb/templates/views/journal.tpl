@@ -8,13 +8,13 @@
     <title>{{service}} journal · {{hostname or 'sysdweb'}} · sysdweb</title>
 
     <!-- Bootstrap -->
-    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom style -->
-    <link href="/css/sysdweb.css" rel="stylesheet">
+    <link href="../css/sysdweb.css" rel="stylesheet">
 
     <!-- Favicon -->
-    <link rel="shortcut icon" href="/img/favicon.png">
+    <link rel="shortcut icon" href="../img/favicon.png">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
