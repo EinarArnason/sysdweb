@@ -7,7 +7,7 @@
 # Distributed under terms of the GNU GPLv3 license.
 
 import os
-from bottle import abort, request, response, route, run, static_file, template, TEMPLATE_PATH, HTTPError
+from bottle import abort, request, response, route, run, static_file, template, TEMPLATE_PATH, HTTPError, mount, default_app
 from pam import pam
 from socket import gethostname
 from datetime import datetime
@@ -209,7 +209,10 @@ def start(config_file, host, port):
     if host == None:
         host = config.get('DEFAULT', 'host', fallback='127.0.0.1')
     if port == None:
-        port = config.get('DEFAULT', 'port', fallback='10080')
+        port = config.get('DEFAULT', 'port', fallback='8085')
 
     # Run webserver
+    root = config.get('DEFAULT', 'root', fallback=None)
+    if (root != None):
+        mount(root, default_app())
     run(host=host, port=port)

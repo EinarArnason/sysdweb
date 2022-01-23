@@ -1,0 +1,33 @@
+# Maintainer: "Amhairghin" Oscar Garcia Amor (https://ogarcia.me)
+_rootdir=$(pwd)/../
+pkgname=sysdweb
+pkgver=1.2.12
+pkgrel=1
+pkgdesc='Control systemd services through Web or REST API'
+arch=('any')
+url='https://github.com/ogarcia/sysdweb'
+license=('GPL')
+depends=('python-bottle' 'python-dbus' 'python-pam' 'python-setuptools' 'python-systemd')
+makedepends=('python-setuptools')
+backup=("etc/${pkgname}.conf")
+source=()
+sha256sums=()
+
+package() {
+  cd "$_rootdir" || exit
+
+  python setup.py install --root="${pkgdir}" --optimize='1'
+
+  # config file
+  install -D -m644 "$_rootdir/${pkgname}.conf" \
+    "${pkgdir}/etc/${pkgname}.conf"
+
+  # doc file
+  install -D -m644 "$_rootdir"/README.md "${pkgdir}/usr/share/doc/${pkgname}/README.md"
+
+  # service files
+  install -D -m644 "$_rootdir/systemd/${pkgname}-system.service" \
+    "${pkgdir}/usr/lib/systemd/system/${pkgname}.service"
+  install -D -m644 "$_rootdir/systemd/${pkgname}-user.service" \
+    "${pkgdir}/usr/lib/systemd/user/${pkgname}.service"
+}

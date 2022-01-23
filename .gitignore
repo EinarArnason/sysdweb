@@ -87,3 +87,8 @@ ENV/
 
 # Rope project settings
 .ropeproject
+
+# Arch Linux packaging
+archlinux/pkg
+archlinux/src
+*.pkg.tar.*
